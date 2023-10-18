@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 
 import { getTransaction } from '../../helpers/apicalls';
+import DetailsCard from './DetailsCard';
 
 const ShowDetails = () => {
 
@@ -11,15 +12,15 @@ const ShowDetails = () => {
 
 
     useEffect(() => {
-        // getTransaction(id)
-        // .then(res => setTransaction(res))
+        getTransaction(id)
+        .then(res => setTransaction(res))
     
     }, [])
 
     return (
-        <div className=''>
+        <div className='ShowDetails'>
             {transaction != {} ? (
-                
+                <DetailsCard transaction={transaction}/>
             )
             : null }
         </div>

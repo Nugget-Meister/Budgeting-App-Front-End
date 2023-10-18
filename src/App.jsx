@@ -6,7 +6,7 @@ import NavBar from "./components/common/NavBar";
 import Index from "./components/Index/Index";
 import NewForm from "./components/Form/NewForm";
 import EditForm from "./components/Form/EditForm";
-import Show from "./components/Show/Show";
+import ShowDetails from "./components/ShowDetails/ShowDetails";
 
 // import './App.css'
 
@@ -22,7 +22,7 @@ function App() {
             <Route path="/" element={<Index/>}/>
             <Route path="/new" element={<NewForm/>}/>
             <Route path="/:id/edit" element={<EditForm/>}/>
-            <Route path="/:id" element={<Show/>}/>
+            <Route path="/:id" element={<ShowDetails/>}/>
           </Routes>
         </main>
       </Router>
