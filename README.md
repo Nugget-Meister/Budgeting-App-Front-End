@@ -1,1 +1,4 @@
-# Budgeting-App-Front-End
+# React + Vite
+
+React Bootstrap
+Nanoid
