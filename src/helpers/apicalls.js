@@ -2,7 +2,7 @@
 
 const URL = import.meta.env.VITE_API_URL
 
-const getAllTransactions= () => {
+const getAllTransactions = () => {
     return fetch(URL)
     .then(res => res.json())
     .catch(err => console.error(err))
@@ -50,7 +50,7 @@ const deleteTransaction = (id) => {
     .catch(err => console.error(err)) 
 }
 
-module.exports = {
+export {
     getAllTransactions,
     getTransaction,
     addTransaction,
