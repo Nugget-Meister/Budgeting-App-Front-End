@@ -25,7 +25,7 @@ const Form = ({id}) => {
         getTransaction(id)
         .then(res => setTransaction(res))
     }
-    
+
     },[])
    
 
@@ -41,11 +41,10 @@ const Form = ({id}) => {
             console.log(id)
             updateTransaction(id, transaction)
             .then(res => alert(`Updated ${transaction.item_name}.`))
-            .then(after => navigate("/"))
+            .then(after => navigate(`/${id}`))
             .catch(err => console.error(err))
         } 
         else {
-            console.log("No Id")
             addTransaction(transaction)
             .then(res => {
                 if(res.status == 200) {
@@ -57,7 +56,7 @@ const Form = ({id}) => {
                 }
             })
             .catch(err => {
-                console.error("Failed")
+                console.error(err)
             })
         }
 
@@ -111,6 +110,7 @@ const Form = ({id}) => {
                 /><br />
             <button type="submit">Submit</button>
             <button type="reset" onClick={handleReset}>Reset</button>
+            <button onClick={()=> {navigate("/")}}>Back</button>
             </form>
         </div>
     );
