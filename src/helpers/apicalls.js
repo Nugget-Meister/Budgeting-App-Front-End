@@ -45,8 +45,14 @@ const deleteTransaction = (id) => {
         method: "DELETE"
     }
 
-    return fetch(URL, options)
-    .then(res => res.json())
+    return fetch(`${URL}/${id}`, options)
+    .then(res => { 
+        if(res.status != 200) {
+            return res
+        } else {
+            return res.json()
+        }
+    })
     .catch(err => console.error(err)) 
 }
 
