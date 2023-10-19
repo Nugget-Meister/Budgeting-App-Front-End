@@ -15,7 +15,7 @@ const getTransaction = (id) => {
     .catch(err => console.error(err))
 }
 
-const addTransaction = (id, data) => {
+const addTransaction = (data) => {
     const options = {
         method: "POST",
         body: JSON.stringify(data),
