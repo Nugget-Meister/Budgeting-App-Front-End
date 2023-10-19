@@ -23,7 +23,10 @@ const addTransaction = (data) => {
     }
 
     return fetch(URL, options)
-    .then(res => res.json())
+    .then(res => {
+        return res
+      } 
+    )
     .catch(err => console.error(err))     
 }
 
