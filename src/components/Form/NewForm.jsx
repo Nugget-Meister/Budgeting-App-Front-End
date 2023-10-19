@@ -4,7 +4,7 @@ import Form from './Form';
 const NewForm = () => {
     return (
         <div>
-            <Form type="new"/>
+            <Form/>
         </div>
     );
 }

@@ -1,9 +1,8 @@
 import React, { useState } from 'react';
 import { nanoid } from 'nanoid';
-import { addTransaction, updateTransaction } from '../../helpers/apicalls';
+import { addTransaction, getTransaction, updateTransaction } from '../../helpers/apicalls';
 
-const Form = ({type}) => {
-
+const Form = ({id}) => {
 
     const templateTransaction ={
         id: nanoid(4),
@@ -12,7 +11,13 @@ const Form = ({type}) => {
         date: "",
         category: ""
     }
+
     const [transaction, setTransaction] = useState({...templateTransaction})
+
+    if(id) {
+        getTransaction(id)
+        .then(res => setTransaction(res))
+    }
 
     const handleReset = () => {
        setTransaction({...templateTransaction})
@@ -23,16 +28,18 @@ const Form = ({type}) => {
         e.preventDefault()
         console.log(transaction)
 
-        switch(type){
-            case "new":
-                // addTransaction()
-                break;
-            case "edit":
-                updateTransaction()
-                break;
-            default:
-                alert("Invalid state detected. Please refresh page. \nIf issue persists, please contact host.")
-        }
+        if(id)
+
+        // switch(type){
+        //     case "new":
+        //         addTransaction(transaction)
+        //         break;
+        //     case "edit":
+        //         updateTransaction(transaction.id, transaction)
+        //         break;
+        //     default:
+        //         alert("Invalid state detected. Please refresh page. \nIf issue persists, please contact host.")
+        // }
     }
 
     const handleChange = (e) => {
