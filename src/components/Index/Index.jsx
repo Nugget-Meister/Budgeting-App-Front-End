@@ -1,7 +1,9 @@
 import React, { useEffect, useState } from 'react';
-import EntryCard from './EntryCard';
 import { getAllTransactions } from '../../helpers/apicalls';
+import EntryCard from './EntryCard';
 import NoEntries from './NoEntries';
+
+import { Table } from 'react-bootstrap';
 
 
 const Index = () => {
@@ -17,10 +19,16 @@ const Index = () => {
 
     return (
         <div className='Index' id="index">
-            {transactions.length > 0 ? 
-            transactions.map((transaction) => {
-                return (<EntryCard transaction={transaction}/>)
-            }): <NoEntries/>}
+            {transactions.length > 0 ? (
+            <>
+                <Table>
+                    {transactions.map((transaction) => {
+                        return (<EntryCard transaction={transaction}/>)
+                    })}
+                </Table>
+            </>
+            )
+            : <NoEntries/>}
         </div>
     );
 }

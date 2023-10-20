@@ -9,7 +9,7 @@ import EditForm from "./components/Form/EditForm";
 import ShowDetails from "./components/ShowDetails/ShowDetails";
 
 // import './App.css'
-
+import 'bootstrap/dist/css/bootstrap.min.css';
 function App() {
 
 
