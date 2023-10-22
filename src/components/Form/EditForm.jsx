@@ -1,6 +1,6 @@
 import React from 'react';
 import { useParams } from 'react-router-dom';
-import Form from './Form';
+import FormTemplate from './FormTemplate';
 
 const EditForm = () => {
 
@@ -9,7 +9,7 @@ const EditForm = () => {
     return (
         <div>
             <h1>Edit Transaction</h1>
-            <Form id={id}/>
+            <FormTemplate id={id}/>
         </div>
     );
 }

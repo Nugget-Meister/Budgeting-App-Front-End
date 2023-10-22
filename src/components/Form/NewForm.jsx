@@ -1,11 +1,11 @@
 import React from 'react';
-import Form from './Form';
+import FormTemplate from './FormTemplate';
 
 const NewForm = () => {
     return (
         <div className='NewForm'>
             <h1>New Transaction</h1>
-            <Form/>
+            <FormTemplate/>
         </div>
     );
 }

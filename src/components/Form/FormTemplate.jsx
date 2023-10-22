@@ -2,8 +2,10 @@ import React, { useEffect, useState } from 'react';
 import { nanoid } from 'nanoid';
 import { addTransaction, getTransaction, updateTransaction } from '../../helpers/apicalls';
 import { useNavigate } from 'react-router-dom';
+import { Form, Button, Container } from 'react-bootstrap';
 
-const Form = ({id}) => {
+
+const FormTemplate = ({id}) => {
 
     const navigate = useNavigate()
 
@@ -34,31 +36,37 @@ const Form = ({id}) => {
     }
 
     const handleSubmit = (e) => {
+
+        const handleNewEdit = () => {
+            if(id != undefined){
+                console.log(id)
+                updateTransaction(id, transaction)
+                .then(res => alert(`Updated ${transaction.item_name}.`))
+                .then(after => navigate(`/${id}`))
+                .catch(err => console.error(err))
+            } 
+            else {
+                addTransaction(transaction)
+                .then(res => {
+                    if(res.status == 200) {
+                        alert(`Added ${transaction.item_name}.`)
+                        navigate('/')
+                    }
+                    else {
+                        console.error(res.code)
+                    }
+                })
+                .catch(err => {
+                    console.error(err)
+                })
+            }
+        }
+
         e.preventDefault()
         console.log(id ,transaction)
 
-        if(id != undefined){
-            console.log(id)
-            updateTransaction(id, transaction)
-            .then(res => alert(`Updated ${transaction.item_name}.`))
-            .then(after => navigate(`/${id}`))
-            .catch(err => console.error(err))
-        } 
-        else {
-            addTransaction(transaction)
-            .then(res => {
-                if(res.status == 200) {
-                    alert(`Added ${transaction.item_name}.`)
-                    navigate('/')
-                }
-                else {
-                    console.error(res.code)
-                }
-            })
-            .catch(err => {
-                console.error(err)
-            })
-        }
+        // handleNewEdit()
+
 
     }
 
@@ -72,6 +80,38 @@ const Form = ({id}) => {
 
     return (
         <div>
+            <Container>
+                <Form onSubmit={handleSubmit}>
+                    <Form.Group className='mb-3'>
+                        <Form.Label>Name</Form.Label>
+                        <Form.Control placeholder='Entry Name'
+                            id='item_name'
+                            value={transaction.item_name}
+                            onChange={handleChange}
+                            required
+                        />
+                        <Form.Text className="text-muted">Please enter the name of the entry above.</Form.Text>
+                    </Form.Group>
+                    <Button 
+                        className=''
+                        type="submit">
+                        Submit
+                    </Button>
+                    <Button 
+                        className=''
+                        onClick={handleReset}
+                        type="reset">
+                        Reset
+                    </Button>
+                    <Button 
+                        className=''
+                        onClick={()=> {navigate("/")}}>
+                        Back
+                    </Button>
+                    
+                    
+                </Form>
+            </Container>
             <form onSubmit={handleSubmit}>
                 <label htmlFor="item_name">Name</label>
                 <input type="text" 
@@ -116,4 +156,4 @@ const Form = ({id}) => {
     );
 }
 
-export default Form;
+export default FormTemplate;
