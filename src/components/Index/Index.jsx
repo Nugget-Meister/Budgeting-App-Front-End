@@ -28,7 +28,6 @@ const Index = () => {
 
     useEffect(() => {
         if(!isLoading) {
-            console.log("firing")
             setloadScreen(<AlertLoading className='animate__animated animate__bounceOutUp'/>)
             setTimeout(() => setloadScreen(null),"800")
         }
@@ -44,7 +43,6 @@ const Index = () => {
             } else {
                 setLoading(false)
                 setError(true)
-                console.error(err)
             }
         })
         .catch((err) => {
