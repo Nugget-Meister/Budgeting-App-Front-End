@@ -17,7 +17,7 @@ const NavBar = () => {
                         </Nav.Item>
                     </Nav>
 
-                    {/* <Link to="/"> Bank of Githubbica</Link> */}
+                    <Link to="/"> Bank of Githubbica</Link>
                 </Container>
                     <Nav.Link href="/new">
                         <Button variant="outline-primary mx-2 my-2">

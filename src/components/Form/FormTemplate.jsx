@@ -9,12 +9,22 @@ const FormTemplate = ({id}) => {
 
     const navigate = useNavigate()
 
+    const currentDateToHTML = () => {
+        const date = new Date()
+        const year = String(date.getFullYear()).padStart(4, '0')
+        const month = String(date.getMonth()).padStart(2, '0')
+        const thisDate  = String(date.getDate()).padStart(2, '0')
+
+        const concat = `${year}-${month}-${thisDate}`
+        return concat
+    }
+
     const templateTransaction ={
         id: nanoid(4),
         item_name: "",
-        amount: 0,
-        date: "",
-        category: "",
+        amount: "",
+        date: currentDateToHTML(),
+        category: "Uncategorized",
         from: ""
     }
 
@@ -65,7 +75,7 @@ const FormTemplate = ({id}) => {
         e.preventDefault()
         console.log(id ,transaction)
 
-        // handleNewEdit()
+        handleNewEdit()
 
 
     }
@@ -92,27 +102,64 @@ const FormTemplate = ({id}) => {
                         />
                         <Form.Text className="text-muted">Please enter the name of the entry above.</Form.Text>
                     </Form.Group>
-                    <Button 
-                        className=''
-                        type="submit">
-                        Submit
-                    </Button>
-                    <Button 
-                        className=''
-                        onClick={handleReset}
-                        type="reset">
-                        Reset
-                    </Button>
-                    <Button 
-                        className=''
-                        onClick={()=> {navigate("/")}}>
-                        Back
-                    </Button>
-                    
-                    
+                    <Form.Group className='mb-3'>
+                        <Form.Label>Amount</Form.Label>
+                            <Form.Control placeholder='$0.00'
+                                id='amount'
+                                type='number'
+                                value={transaction.amount}
+                                step={'0.01'}
+                                onChange={handleChange}
+                                required
+                            />
+                            <Form.Text className="text-muted">The amount in $USD</Form.Text>
+                    </Form.Group>
+                    <Form.Group>
+                        <Form.Label>Date</Form.Label>
+                        <Form.Control placeholder='MM-DD-YYYY'
+                            id='item_name'
+                            type='date'
+                            value={transaction.date}
+                            onChange={handleChange}
+                            required
+                            />
+                        <Form.Text className="text-muted">The date this transaction was made.</Form.Text>
+                    </Form.Group>
+                    <Form.Group>
+                        <Form.Label>Category</Form.Label>
+                        <Form.Control placeholder='Other'
+                            id='category'
+                            value={transaction.category}
+                            onChange={handleChange}
+                            required
+                            />
+                        <Form.Text className="text-muted">The category of the entry</Form.Text>
+                    </Form.Group>
+                    <br />
+                    <Container className='d-flex justify-content-center'>
+                        <Button 
+                            className='m-2 px-4'
+                            variant='primary'
+                            type="submit">
+                            Submit
+                        </Button>
+                        <Button 
+                            className='m-2 px-3'
+                            variant='danger'
+                            onClick={handleReset}
+                            type="reset">
+                            Reset
+                        </Button>
+                        <Button 
+                            className='m-2 px-4'
+                            variant='outline-secondary'
+                            onClick={()=> {navigate("/")}}>
+                            Back
+                        </Button>
+                    </Container>
                 </Form>
             </Container>
-            <form onSubmit={handleSubmit}>
+            {/* <form onSubmit={handleSubmit}>
                 <label htmlFor="item_name">Name</label>
                 <input type="text" 
                     id="item_name"
@@ -151,7 +198,7 @@ const FormTemplate = ({id}) => {
             <button type="submit">Submit</button>
             <button type="reset" onClick={handleReset}>Reset</button>
             <button onClick={()=> {navigate("/")}}>Back</button>
-            </form>
+            </form> */}
         </div>
     );
 }
