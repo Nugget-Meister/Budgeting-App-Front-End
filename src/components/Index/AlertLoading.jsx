@@ -3,7 +3,7 @@ import { Container, Spinner, Alert } from 'react-bootstrap';
 // import "./style/LoadingAlert.css"
 
 const AlertLoading = ({className}) => {
-    // console.log(className)
+
     return (
         <Container className={`AlertLoading ${className}`}>
                 <br />

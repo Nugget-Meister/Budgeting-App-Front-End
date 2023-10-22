@@ -11,6 +11,7 @@ import { useNavigate, Link } from 'react-router-dom';
 import AlertLoading from './AlertLoading';
 import AlertError from './AlertError';
 import AlertNoEntries from './AlertNoEntries';
+import BankCalculator from './BankCalculator';
 
 const Index = () => {
 
@@ -25,7 +26,8 @@ const Index = () => {
     const [loadScreen, setloadScreen] = useState(<AlertLoading className='animate__animated animate__bounceInDown'/>)
 
     useEffect(() => {
-        setTimeout(() => getAPIResponse(),"3000")
+        // setTimeout(() => getAPIResponse(),"3000")
+        setLoading(false)
     }, [])
 
     useEffect(() => {
@@ -67,6 +69,7 @@ const Index = () => {
 
             {transactions.length > 0 && loadScreen == (null) ? (
             <Container className='animate__animated animate__fadeInUp'>
+                <BankCalculator transactions={transactions}/>
                 <Table striped hover>
                     <thead>
                         <tr>
@@ -92,7 +95,12 @@ const Index = () => {
                 
             </Container>
             )
-            : !isLoading && loadScreen == (null) ? <AlertNoEntries/> : ""}
+            : !isLoading && loadScreen == (null) ? (
+            <>
+                <BankCalculator/>
+                <AlertNoEntries/>
+            </>
+                ) : ""}
         </div>
     );
 }
