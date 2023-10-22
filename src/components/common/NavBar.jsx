@@ -7,6 +7,7 @@ import { Navbar, Container } from 'react-bootstrap';
 const NavBar = () => {
     return (
         <div>
+            <Container></Container>
             <Navbar className='bg-body-secondary p-0'>
                 <Container>
                     <Nav variant='underline'>
@@ -16,8 +17,10 @@ const NavBar = () => {
                             </Nav.Link>
                         </Nav.Item>
                     </Nav>
-
-                    <Link to="/"> Bank of Githubbica</Link>
+                <Container className='d-flex justify-content-center'>
+                    <h1>Bank of Githubbica</h1>
+                    <small>The Bankening</small>
+                </Container>
                 </Container>
                     <Nav.Link href="/new">
                         <Button variant="outline-primary mx-2 my-2">
