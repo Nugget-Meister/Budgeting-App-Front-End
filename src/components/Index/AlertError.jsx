@@ -3,9 +3,6 @@ import { Link } from 'react-router-dom';
 import { Container, Alert } from 'react-bootstrap';
 
 const AlertError = () => {
-
-    // https://budgetingapp.onrender.com/transactions
-
       // Links
       const issueLink = "https://github.com/Nugget-Meister/Budgeting-App-Front-End/issue"
 
