@@ -7,6 +7,8 @@ import Index from "./components/Index/Index";
 import NewForm from "./components/Form/NewForm";
 import EditForm from "./components/Form/EditForm";
 import ShowDetails from "./components/ShowDetails/ShowDetails";
+import 'animate.css'
+
 
 // import './App.css'
 import 'bootstrap/dist/css/bootstrap.min.css';

@@ -2,3 +2,5 @@
 
 React Bootstrap
 Nanoid
+
+Animate.css

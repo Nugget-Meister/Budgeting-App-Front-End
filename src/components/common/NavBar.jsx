@@ -6,13 +6,12 @@ import { Navbar, Container } from 'react-bootstrap';
 
 const NavBar = () => {
     return (
-        <div>
-            <Container></Container>
+        <div className="animate__animated animate__fadeInDown">
             <Navbar className='bg-body-secondary p-0'>
                 <Container>
                     <Nav variant='underline'>
                         <Nav.Item>
-                            <Nav.Link className="p-3" href="/">
+                            <Nav.Link className="p-3 animate__animated animate__fadeInLeft" href="/">
                                 Home
                             </Nav.Link>
                         </Nav.Item>
@@ -22,7 +21,7 @@ const NavBar = () => {
                 </Container>
                 </Container>
                     <Nav.Link href="/new">
-                        <Button variant="outline-primary mx-2 my-2">
+                        <Button variant="outline-primary mx-2 my-2 animate__animated animate__fadeInRight">
                             New Entry
                         </Button>
                     </Nav.Link>

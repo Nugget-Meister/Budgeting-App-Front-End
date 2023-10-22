@@ -1,30 +1,37 @@
 import React, { useEffect, useState } from 'react';
 import { getAllTransactions } from '../../helpers/apicalls';
 import EntryCard from './EntryCard';
-import NoEntries from './NoEntries';
 
-import ErrorAlert from './ErrorAlert';
-import LoadingAlert from './LoadingAlert';
+
+
 
 import { Container, Table, Button } from 'react-bootstrap';
 import { useNavigate, Link } from 'react-router-dom';
-import { Spinner, Alert } from 'react-bootstrap';
+
+import AlertLoading from './AlertLoading';
+import AlertError from './AlertError';
+import AlertNoEntries from './AlertNoEntries';
 
 const Index = () => {
 
     // Links
     const issueLink = "https://github.com/Nugget-Meister/Budgeting-App-Front-End/issue"
 
-
     const navigate = useNavigate()
 
     const [transactions, setTransactions] = useState([])
     const [isLoading, setLoading] = useState(true)
     const [isError, setError] = useState(false)
+    const [loadScreen, setloadScreen] = useState(<AlertLoading className='animate__animated animate__bounceInDown'/>)
 
     useEffect(() => {
-        setTimeout(() => getAPIResponse(),"3000")
+        // setTimeout(() => getAPIResponse(),"3000")
     }, [])
+
+    useEffect(() => {
+        setloadScreen(<AlertLoading className='animate__animated animate__bounceOutUp'/>)
+        setTimeout(() => setloadScreen(null),"800")
+    },[isLoading])
 
     const getAPIResponse = () => {
         getAllTransactions()
@@ -39,20 +46,21 @@ const Index = () => {
             console.error(err)
         })
     }
-
     return (
         <div className='Index' id="index">
-            <LoadingAlert />
             {isLoading ? (
-                <LoadingAlert/>
-            ): ""}
+                <AlertLoading className='animate__animated animate__bounceInDown'/>
+            ): 
+            loadScreen
+            }
             {isError ? (
-                <ErrorAlert/>
+                <AlertError/>
             ): ""}
 
 
-            {transactions.length > 0 ? (
-            <Container>
+
+            {transactions.length > 0  && loadScreen == (null) ? (
+            <Container className='animate__animated animate__fadeInUp'>
                 <Table striped hover>
                     <thead>
                         <tr>
@@ -78,7 +86,7 @@ const Index = () => {
                 
             </Container>
             )
-            : <NoEntries/>}
+            : <AlertNoEntries/>}
         </div>
     );
 }

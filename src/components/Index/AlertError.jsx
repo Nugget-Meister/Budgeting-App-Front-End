@@ -1,10 +1,10 @@
 import React from 'react';
 import { Container, Alert } from 'react-bootstrap';
 
-const ErrorAlert = () => {
+const AlertError = () => {
     return (
         <>
-            <Container className='p-5'>
+            <Container className='AlertError p-5'>
                 <Alert 
                     className='m-5'
                     variant="danger">
@@ -22,4 +22,4 @@ const ErrorAlert = () => {
     );
 }
 
-export default ErrorAlert;
+export default AlertError;
