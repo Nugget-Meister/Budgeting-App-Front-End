@@ -19,7 +19,6 @@ const NavBar = () => {
                     </Nav>
                 <Container className='d-flex justify-content-center'>
                     <h1>Bank of Githubbica</h1>
-                    <small>The Bankening</small>
                 </Container>
                 </Container>
                     <Nav.Link href="/new">

@@ -1,18 +1,20 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { Card } from 'react-bootstrap';
+import { useNavigate } from 'react-router-dom';
 
 const EntryCard = ({transaction}) => {
+    const navigate = useNavigate()
     return (
-        <div className='EntryCard' key={transaction.id}>
-            <Card>
-                <Link to={`/${transaction.id}`}>
-                    <span>{transaction.date}</span><br />
-                    <span>{transaction.item_name}</span><br />
-                    <span>{transaction.amount}</span>
-                </Link>
-            </Card>
-        </div>
+        <tr 
+            className='EntryCard'
+            onClick={() => navigate(`/${transaction.id}`)}
+            key={transaction.id}> 
+                    <td className=''></td>
+                    <td>{transaction.date}</td>
+                    <td>$ {Number(transaction.amount).toFixed(2)}</td>
+                    <td>{transaction.item_name}</td>
+        </tr>
     );
 }
 

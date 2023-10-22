@@ -124,7 +124,7 @@ const FormTemplate = ({id}) => {
                             required
                             />
                         <Form.Text className="text-muted">The date this transaction was made.</Form.Text>
-                    </Form.Group>
+                    </Form.Group> <br />
                     <Form.Group>
                         <Form.Label>Category</Form.Label>
                         <Form.Control placeholder='Other'

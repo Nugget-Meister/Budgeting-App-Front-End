@@ -1,0 +1,19 @@
+.loadingAnim::after {
+    animation: ellipse steps(1,end) 1s infinite;
+    content:'';
+
+}
+
+@keyframes ellipse {
+    0% {content: " ...";}
+    10% {content: " o..";}
+    20% {content: " 0..";}
+    30% {content: " ...";}
+    40% {content: " .o.";}
+    50% {content: " .0.";}
+    60% {content: " ...";}
+    70% {content: " ..o";}
+    80% {content: " ..0";}
+    90% {content: " ..o";}
+    100% {content: " ...";}
+}
