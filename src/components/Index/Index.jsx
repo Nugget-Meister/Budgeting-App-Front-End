@@ -25,12 +25,15 @@ const Index = () => {
     const [loadScreen, setloadScreen] = useState(<AlertLoading className='animate__animated animate__bounceInDown'/>)
 
     useEffect(() => {
-        // setTimeout(() => getAPIResponse(),"3000")
+        setTimeout(() => getAPIResponse(),"3000")
     }, [])
 
     useEffect(() => {
-        setloadScreen(<AlertLoading className='animate__animated animate__bounceOutUp'/>)
-        setTimeout(() => setloadScreen(null),"800")
+        if(!isLoading) {
+            console.log("firing")
+            setloadScreen(<AlertLoading className='animate__animated animate__bounceOutUp'/>)
+            setTimeout(() => setloadScreen(null),"800")
+        }
     },[isLoading])
 
     const getAPIResponse = () => {
@@ -46,6 +49,9 @@ const Index = () => {
             console.error(err)
         })
     }
+
+
+
     return (
         <div className='Index' id="index">
             {isLoading ? (
@@ -59,7 +65,7 @@ const Index = () => {
 
 
 
-            {transactions.length > 0  && loadScreen == (null) ? (
+            {transactions.length > 0 && loadScreen == (null) ? (
             <Container className='animate__animated animate__fadeInUp'>
                 <Table striped hover>
                     <thead>
@@ -86,7 +92,7 @@ const Index = () => {
                 
             </Container>
             )
-            : <AlertNoEntries/>}
+            : !isLoading && loadScreen == (null) ? <AlertNoEntries/> : ""}
         </div>
     );
 }
