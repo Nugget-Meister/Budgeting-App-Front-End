@@ -14,10 +14,6 @@ import AlertNoEntries from './AlertNoEntries';
 import BankCalculator from './BankCalculator';
 
 const Index = () => {
-
-    // Links
-    const issueLink = "https://github.com/Nugget-Meister/Budgeting-App-Front-End/issue"
-
     const navigate = useNavigate()
 
     const [transactions, setTransactions] = useState([])
@@ -26,8 +22,8 @@ const Index = () => {
     const [loadScreen, setloadScreen] = useState(<AlertLoading className='animate__animated animate__bounceInDown'/>)
 
     useEffect(() => {
-        // setTimeout(() => getAPIResponse(),"3000")
-        setLoading(false)
+        setTimeout(() => getAPIResponse(),"3000")
+        // setLoading(false)
     }, [])
 
     useEffect(() => {
@@ -41,11 +37,17 @@ const Index = () => {
     const getAPIResponse = () => {
         getAllTransactions()
         .then(res => {
-            setTransactions(res)
-            setLoading(false)
-            setError(false)
+            if(res){
+                setTransactions(res)
+                setLoading(false)
+                setError(false)
+            } else {
+                setLoading(false)
+                setError(true)
+                console.error(err)
+            }
         })
-        .catch(err => {
+        .catch((err) => {
             setLoading(false)
             setError(true)
             console.error(err)
@@ -75,7 +77,7 @@ const Index = () => {
                         <tr>
                             <th></th>
                             <th>Date</th>
-                            <th>Title</th>
+                            <th>Amount</th>
                             <th>Value</th>
                         </tr>
                     </thead>
@@ -95,7 +97,7 @@ const Index = () => {
                 
             </Container>
             )
-            : !isLoading && loadScreen == (null) ? (
+            : !isLoading && loadScreen == (null) && !isError? (
             <>
                 <BankCalculator/>
                 <AlertNoEntries/>

@@ -1,10 +1,12 @@
 import React from 'react';
 import Nav from 'react-bootstrap/Nav'
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import Button from 'react-bootstrap/Button';
 import { Navbar, Container } from 'react-bootstrap';
 
 const NavBar = () => {
+
+    const navigate = useNavigate()
     return (
         <div className="animate__animated animate__fadeInDown">
             <Navbar className='bg-body-secondary p-0'>
@@ -20,11 +22,12 @@ const NavBar = () => {
                     <h1>Bank of Githubbica</h1>
                 </Container>
                 </Container>
-                    <Nav.Link href="/new">
-                        <Button variant="outline-primary mx-2 my-2 animate__animated animate__fadeInRight">
+                        <Button 
+                            variant="outline-primary mx-2 my-2 animate__animated animate__fadeInRight"
+                            onClick={() => {navigate("/new")}}
+                            >
                             New Entry
                         </Button>
-                    </Nav.Link>
             </Navbar>
         </div>
     );

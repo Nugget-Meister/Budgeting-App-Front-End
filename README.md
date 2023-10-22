@@ -5,7 +5,9 @@ React Bootstrap
 Nanoid
 Animate.css
 
-Stretch
+
+
+## Stretch Goals
 
 Implement React Bootstrap
 Implement Animations and transitions

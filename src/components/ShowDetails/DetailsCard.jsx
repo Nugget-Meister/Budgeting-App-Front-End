@@ -65,17 +65,19 @@ const DetailsCard = ({transaction}) => {
                 <section className='animate__animated animate__fadeInUp d-flex flex-row-reverse bd-highlight'>
                     <Button 
                         variant="outline-secondary"
+                        className='px-3'
                         onClick={() => {navigate("/")}}>
                         Back
                     </Button>
                     <Button
-                        variant='outline-primary'
+                        variant='outline-primary mx-2 '
                         onClick={()=> {navigate(`/${id}/edit`)}}
                     >
                         Edit
                     </Button>
                     <Button
                         variant='danger'
+                        className='px-2 mx-3'
                         onClick={() => deleteEntry(transaction.id)}
                     >
                         Delete

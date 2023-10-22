@@ -2,7 +2,8 @@ import React, { useEffect, useState } from 'react';
 import { nanoid } from 'nanoid';
 import { addTransaction, getTransaction, updateTransaction } from '../../helpers/apicalls';
 import { useNavigate } from 'react-router-dom';
-import { Form, Button, Container } from 'react-bootstrap';
+import { Form, Button, Container, Spinner} from 'react-bootstrap';
+import AlertError from '../Index/AlertError';
 
 
 const FormTemplate = ({id}) => {
@@ -29,7 +30,8 @@ const FormTemplate = ({id}) => {
     }
 
     const [transaction, setTransaction] = useState({...templateTransaction})
-
+    const [isError, setError] = useState(false)
+    const [isLoading, setLoading] = useState(false)
 
     useEffect(() => {
 
@@ -46,6 +48,9 @@ const FormTemplate = ({id}) => {
     }
 
     const handleSubmit = (e) => {
+        e.preventDefault()
+        setLoading(true)
+        setError(false)
 
         const handleNewEdit = () => {
             if(id != undefined){
@@ -68,14 +73,15 @@ const FormTemplate = ({id}) => {
                 })
                 .catch(err => {
                     console.error(err)
+                    setError(true)
                 })
             }
         }
 
-        e.preventDefault()
-        console.log(id ,transaction)
-
-        handleNewEdit()
+        setTimeout(() => {
+            handleNewEdit()
+            setLoading(false)
+        } , "1000")
 
 
     }
@@ -90,7 +96,18 @@ const FormTemplate = ({id}) => {
 
     return (
         <div>
-            <Container>
+            {isLoading ? (
+            <Container
+                className='d-flex justify-content-center'
+            >
+                <Spinner 
+                    variant="secondary"
+                    animation="border"
+                />
+            </Container>
+            ): ""}
+            {isError ? <AlertError/>:""}
+            <Container className='FormTemplate'>
                 <Form onSubmit={handleSubmit}>
                     <Form.Group className='mb-3'>
                         <Form.Label>Name</Form.Label>

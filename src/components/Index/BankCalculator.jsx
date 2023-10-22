@@ -2,7 +2,6 @@ import React from 'react';
 import { Container, Alert } from 'react-bootstrap';
 const BankCalculator = ({transactions}) => {
 
-        // transactions = [{amount: "-122"}, {amount: "3.90"}]
       let sum = 0;
 
     if(transactions && transactions != []) {

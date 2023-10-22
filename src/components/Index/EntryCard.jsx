@@ -12,7 +12,7 @@ const EntryCard = ({transaction}) => {
             key={transaction.id}> 
                     <td className=''></td>
                     <td>{transaction.date}</td>
-                    <td>$ {Number(transaction.amount).toFixed(2)}</td>
+                    <td className={`${transaction.amount > 0 ? "text-success": "text-danger"}`}>$ {Number(transaction.amount).toFixed(2)}</td>
                     <td>{transaction.item_name}</td>
         </tr>
     );
